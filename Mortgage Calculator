@@ -1,4 +1,5 @@
 import java.text.NumberFormat;
+import java.time.Month;
 import java.util.Scanner;
 
 public class MortgageCalculator {
@@ -23,13 +24,17 @@ public class MortgageCalculator {
 
         System.out.println("The Period In Years Is: " + Period + " Years");
 
-        double TotalAmount = (Principal * Interest * Period) / Percent;
+        double commonElementOfMonthlyMortgage = Math.pow(1+Interest,Period*Months_In_An_Year);
 
-        double Mortgage = (TotalAmount * Interest * Period) / Percent - TotalAmount;
+        double NewMonthlyMortgage = (Principal * Interest * commonElementOfMonthlyMortgage);
 
-        double YearlyMortgage = (TotalAmount * Interest) / Percent - (Principal / 30);
+        double MonthlyMortgage = (NewMonthlyMortgage / commonElementOfMonthlyMortgage -1)/1000;
 
-        double MonthlyMortgage = (TotalAmount * Interest) / Percent / Months_In_An_Year - (TotalAmount / 30 / 12);
+        double YearlyMortgage = MonthlyMortgage * 12;
+
+        double Mortgage = YearlyMortgage * Period/2;
+
+        double TotalAmount = Principal + Mortgage;
 
         System.out.println("Total Amount: " + NumberFormat.getCurrencyInstance().format(TotalAmount));
 
@@ -38,6 +43,7 @@ public class MortgageCalculator {
         System.out.println("Yearly Mortgage: " + NumberFormat.getCurrencyInstance().format(YearlyMortgage));
 
         System.out.println("Monthly Mortgage: " + NumberFormat.getCurrencyInstance().format(MonthlyMortgage));
+
 
     }
 
