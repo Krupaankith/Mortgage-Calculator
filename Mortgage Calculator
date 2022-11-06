@@ -1,0 +1,29 @@
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+public class MortgageCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Principal: ");
+
+        double Principal = scanner.nextDouble();
+
+        System.out.println("The Principal is: " + NumberFormat.getCurrencyInstance().format(Principal));
+
+        System.out.print("Annual Interest Rate: ");
+        double Interest = scanner.nextDouble();
+
+        System.out.println("The Annual Interest Rate is: " + NumberFormat.getPercentInstance().format(Interest/100));
+
+        System.out.print("Period (Years): ");
+        double Period = scanner.nextDouble();
+
+        System.out.println("The Period In Years Is: " + Period + " Years");
+
+        double Mortgage = (Principal * Interest * Period) / 100 - Principal;
+
+        System.out.println("Mortgage: " + NumberFormat.getCurrencyInstance().format(Mortgage));
+
+    }
+
+}
