@@ -3,6 +3,9 @@ import java.util.Scanner;
 
 public class MortgageCalculator {
     public static void main(String[] args) {
+        final byte Percent = 100;
+        final byte Months_In_An_Year = 12;
+
         Scanner scanner = new Scanner(System.in);
         System.out.print("Principal: ");
 
@@ -20,9 +23,21 @@ public class MortgageCalculator {
 
         System.out.println("The Period In Years Is: " + Period + " Years");
 
-        double Mortgage = (Principal * Interest * Period) / 100 - Principal;
+        double TotalAmount = (Principal * Interest * Period) / Percent;
 
-        System.out.println("Mortgage: " + NumberFormat.getCurrencyInstance().format(Mortgage));
+        double Mortgage = (TotalAmount * Interest * Period) / Percent - TotalAmount;
+
+        double YearlyMortgage = (TotalAmount * Interest) / Percent - (Principal / 30);
+
+        double MonthlyMortgage = (TotalAmount * Interest) / Percent / Months_In_An_Year - (TotalAmount / 30 / 12);
+
+        System.out.println("Total Amount: " + NumberFormat.getCurrencyInstance().format(TotalAmount));
+
+        System.out.println("Total Mortgage: " + NumberFormat.getCurrencyInstance().format(Mortgage));
+
+        System.out.println("Yearly Mortgage: " + NumberFormat.getCurrencyInstance().format(YearlyMortgage));
+
+        System.out.println("Monthly Mortgage: " + NumberFormat.getCurrencyInstance().format(MonthlyMortgage));
 
     }
 
