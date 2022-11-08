@@ -39,23 +39,15 @@ public class MortgageCalculator {
         System.out.println("The Period In Years Is: " + Period + " Years");
 
         double commonElementOfMonthlyMortgage = Math.pow(1+Interest,Period*Months_In_An_Year);
-
         double NewMonthlyMortgage = (Principal * Interest * commonElementOfMonthlyMortgage);
-
         double MonthlyMortgage = (NewMonthlyMortgage / commonElementOfMonthlyMortgage -1)/1000;
-
         double YearlyMortgage = MonthlyMortgage * 12;
-
         double Mortgage = YearlyMortgage * Period/2;
-
         double TotalAmount = Principal + Mortgage;
 
         System.out.println("Total Amount: " + NumberFormat.getCurrencyInstance().format(TotalAmount));
-
         System.out.println("Total Mortgage: " + NumberFormat.getCurrencyInstance().format(Mortgage));
-
         System.out.println("Yearly Mortgage: " + NumberFormat.getCurrencyInstance().format(YearlyMortgage));
-
         System.out.println("Monthly Mortgage: " + NumberFormat.getCurrencyInstance().format(MonthlyMortgage));
 
 
